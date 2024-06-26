@@ -6,6 +6,8 @@ import bcrypt from "bcryptjs";
 import { createActivationToken } from "@/utils/tokens";
 import sendMail from "@/utils/sendMail";
 import { activateTemplateEmail } from "@/emailTemplates/activate";
+
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -40,6 +42,7 @@ export default async function handler(
         .json({ message: "Password must be atleast 6 characters." });
     }
     const cryptedPassword = await bcrypt.hash(password, 12);
+   
     const newuser = new User({
       name: `${first_name + " " + last_name}`,
       email,
@@ -47,9 +50,11 @@ export default async function handler(
       password: cryptedPassword,
     });
     await newuser.save();
+    
     const activation_token = createActivationToken({
       id: newuser._id.toString(),
     });
+
     const url = `${process.env.NEXTAUTH_URL}/activate/${activation_token}`;
     await sendMail(
       newuser.email,
