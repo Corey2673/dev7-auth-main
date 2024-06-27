@@ -3,11 +3,11 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema({
   firstname: {
     type: String,
-    required: true,
   },
+
   lastname: {
     type: String,
-    required: true,
+   
   },
   userID: {
     type: String,
@@ -23,11 +23,10 @@ const userSchema = new mongoose.Schema({
    timestamp: {
     type: String,
   },
-  signature: {
-    type: String,
-  },
-
 comfirmed:{
+    type: String, 
+} ,
+questionTitle:{
     type: String, 
 } 
  

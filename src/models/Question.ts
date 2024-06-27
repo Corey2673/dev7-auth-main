@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema({
 
   title: {
     type: String,
-    required: true,
+    
   },
   userType: {
     type: String,
@@ -18,10 +18,7 @@ const userSchema = new mongoose.Schema({
    repeated: {
     type: String,
   },
-  signature: {
-    type: String,
-  },
- 
+  
   
 });
 

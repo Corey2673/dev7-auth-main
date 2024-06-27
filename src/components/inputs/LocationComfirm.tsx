@@ -85,7 +85,7 @@ return <AskQSafety data={data} siteLocation={selectedSiteLocation}  />
         <label htmlFor="sitelocation" className="block text-gray-700">
           Site Location
         </label>
-        <div className="flex space-x-4 mt-2">
+      <div className="w-full max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg flex justify-center">
           {["Battery Plant", "Vehicle Plant"].map((dept) => (
             <label
               key={dept}
@@ -96,7 +96,8 @@ return <AskQSafety data={data} siteLocation={selectedSiteLocation}  />
                 id="sitelocation"
                 value={dept}
                 {...register("sitelocation")}
-                className="form-radio text-indigo-600 focus:ring-indigo-500 focus:border-indigo-500"
+               className="form-radio text-indigo-600 focus:ring-indigo-500 focus:border-indigo-500 p-4"
+
                 onChange={handleSiteLocationChange}
               />
               <span className="text-gray-800">{dept}</span>

@@ -21,36 +21,23 @@ interface IRegisterFormProps {}
 
 const FormSchema = z
   .object({
-    firstname: z
+    title: z
       .string()
       .min(2, "First name must be at least 2 characters")
       .max(32, "First name must be less than 32 characters")
-      .regex(new RegExp("^[a-zA-Z]+$"), "No special characters allowed."),
-    lastname: z
+,
+    question: z
       .string()
-      .min(2, "Last name must be at least 2 characters")
-      .max(32, "Last name must be less than 32 characters")
-      .regex(new RegExp("^[a-zA-Z]+$"), "No special characters allowed."),
-    emergencycontactname: z
-      .string()
-      .min(2, "Emergency contact name must be at least 2 characters")
-      .max(32, "Emergency contact name must be less than 32 characters")
-      .regex(new RegExp("^[a-zA-Z]+$"), "No special characters allowed."),
-    emergencycontactnumber: z
-      .string()
-      .min(2, "Emergency contact number must be at least 2 characters")
-      .max(32, "Emergency contact number must be less than 32 characters"),
-    phone: z
-      .string()
-      .min(2, "Contact number must be at least 2 characters")
-      .max(32, "Contact number must be less than 32 characters"),
-    employeeID: z.string(),
-
-    role: z.enum(["Shop Floor", "Client Team", "Control Room", "Inventory", "Management"], {
+      .min(2, "Last name must be at least 2 characters"),
+    role: z.enum(["Shop Floor", "Client Team", "Control Room", "Inventory", "Management","All"], {
       required_error: "Department is required",
+    }), 
+    repeated: z.enum(["Ask Once", "Repeated"], {
+      required_error: "Repeated is required",
     }),
-      employeestatus: z.enum(["Full Time Employee (FTE)", "Contracted Employee (CTE)"], {
-      required_error: "Department is required",
+
+    sitelocation: z.enum(["Vehicle Plant", "Battery Plant", "All"], {
+      required_error: "Location is required",
     }),
   });
 
@@ -67,8 +54,11 @@ const RegisterForm: React.FunctionComponent<IRegisterFormProps> = (props) => {
   });
 
   const onSubmit: SubmitHandler<FormSchemaType> = async (values) => {
+
+
+   
     try {
-      const { data } = await axios.post("/api/auth/adduser", {
+      const { data } = await axios.post("/api/auth/addquestions", {
         ...values,
       });
       reset();
@@ -81,7 +71,8 @@ const RegisterForm: React.FunctionComponent<IRegisterFormProps> = (props) => {
   const [showUsers, setShowUsers] = useState(false); // State to manage the visibility of users
 
   return (
-    <div className="w-full px-12 py-4">
+    
+    <div className=" container mx-auto max">
    <button
         className="absolute top-4 right-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md"
         onClick={() => setShowUsers(!showUsers)}
@@ -104,70 +95,28 @@ const RegisterForm: React.FunctionComponent<IRegisterFormProps> = (props) => {
             label="Title"
             type="text"
             icon={<CiUser />}
-            placeholder="Cart Safety"
+            placeholder="Title"
             register={register}
-            error={errors?.firstname?.message}
+            error={errors?.title?.message}
             disabled={isSubmitting}
           />
-     
         </div>
-
-            <label className="inline-flex items-center">
-        <input
-          type="checkbox"
-          className="form-checkbox text-blue-600"
-        //   {...register(name)}
-        
-        />
-     
-      </label>
-   
         <Input
-          name="phone"
-          label="Contact Number"
+          name="question"
+          label="Ask Safety Question"
           type="text"
           icon={<BsTelephone />}
-          placeholder="+1(xxx) xxx-xxxx"
+          placeholder="Ask Safety Question"
           register={register}
-          error={errors?.phone?.message}
+          error={errors?.question?.message}
           disabled={isSubmitting}
+          
         />
-        <div className="gap-2 md:flex">
-          <Input
-            name="emergencycontactname"
-            label="Emergency Contact Name"
-            type="text"
-            icon={<CiUser />}
-            placeholder="Jane Doe"
-            register={register}
-            error={errors?.emergencycontactname?.message}
-            disabled={isSubmitting}
-          />
-          <Input
-            name="emergencycontactnumber"
-            label="Emergency Contact Number"
-            type="text"
-            icon={<BsTelephone />}
-            placeholder="+1(xxx) xxx-xxxx"
-            register={register}
-            error={errors?.emergencycontactnumber?.message}
-            disabled={isSubmitting}
-          />
-        </div>
-        <Input
-          name="employeeID"
-          label="Employee ID"
-          type="text"
-          icon={<FiLock />}
-          placeholder="xxxxxxx"
-          register={register}
-          error={errors?.employeeID?.message}
-          disabled={isSubmitting}
-        />
+      
         <div className="my-4">
-          <label className="block text-gray-700">Department</label>
+          <label className="block text-gray-700">Departments</label>
           <div className="flex flex-col space-y-2">
-            {["Shop Floor", "Client Team", "Control Room", "Inventory", "Management"].map((dept) => (
+            {["Shop Floor", "Client Team", "Control Room", "Inventory", "Management","All"].map((dept) => (
               <label key={dept} className="inline-flex items-center">
                 <input
                   type="radio"
@@ -187,25 +136,47 @@ const RegisterForm: React.FunctionComponent<IRegisterFormProps> = (props) => {
           )}
         </div>
 
-         <div className="my-4">
-          <label className="block text-gray-700">Personal Type</label>
+        <div className="my-4">
+          <label className="block text-gray-700">Site Location</label>
           <div className="flex flex-col space-y-2">
-            {["Full Time Employee (FTE)", "Contracted Employee (CTE)"].map((dept) => (
+            {["Vehicle Plant", "Battery Plant", "All"].map((dept) => (
               <label key={dept} className="inline-flex items-center">
                 <input
                   type="radio"
-                  
                   value={dept}
-                  {...register("employeestatus")}
+                  {...register("sitelocation")}
                   className="form-radio text-indigo-600"
                 />
                 <span className="ml-2">{dept}</span>
               </label>
             ))}
           </div>
-          {errors.employeestatus && (
+          {errors.sitelocation && (
             <p className="text-red-500 text-xs mt-1">
-              {errors.employeestatus.message}
+              {errors.sitelocation.message}
+            </p>
+          )}
+        </div>
+
+         <div className="my-4">
+          <label className="block text-gray-700">Question Repeated</label>
+          <div className="flex flex-col space-y-2">
+            {["Ask Once", "Repeated"].map((dept) => (
+              <label key={dept} className="inline-flex items-center">
+                <input
+                  type="radio"
+                  
+                  value={dept}
+                  {...register("repeated")}
+                  className="form-radio text-indigo-600"
+                />
+                <span className="ml-2">{dept}</span>
+              </label>
+            ))}
+          </div>
+          {errors.repeated && (
+            <p className="text-red-500 text-xs mt-1">
+              {errors.repeated.message}
             </p>
           )}
         </div>
