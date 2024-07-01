@@ -1,4 +1,4 @@
-import User from "@/models/User";
+import User from "@/models2/User";
 import connectDb from "@/utils/connectDb";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import type { NextApiRequest, NextApiResponse } from "next";

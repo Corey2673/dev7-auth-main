@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import connectDb from "@/utils/connectDb";
-import Acknowledgement from "@/models/Acknowledgement";
+import Acknowledgement from "@/models2/Acknowledgement";
 
 export default async function handler(
   req: NextApiRequest,

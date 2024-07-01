@@ -1,4 +1,4 @@
-import Acknowledgement from "@/models/Acknowledgement";
+import Acknowledgement from "@/models2/Acknowledgement";
 import connectDb from "@/utils/connectDb";
 import type { NextApiRequest, NextApiResponse } from "next";
 import validator from "validator";

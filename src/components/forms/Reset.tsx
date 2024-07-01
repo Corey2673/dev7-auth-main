@@ -55,9 +55,9 @@ const ResetForm: React.FunctionComponent<IResetFormProps> = (props) => {
     let password = watch().password;
     return zxcvbn(password ? password : "").score;
   };
-  useEffect(() => {
-    setPasswordScore(validatePasswordStrength());
-  }, [watch().password]);
+  // useEffect(() => {
+  //   setPasswordScore(validatePasswordStrength());
+  // }, [watch().password]);
   return (
     <div className="w-full px-12 py-4">
       <h2 className="text-center text-2xl font-bold tracking-wide text-gray-800">

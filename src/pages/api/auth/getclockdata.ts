@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import connectDb from "@/utils/connectDb";
-import ClockData from "@/models/ClockData"; 
+import ClockData from "@/models2/ClockData"; 
 
 export default async function handler(
   req: NextApiRequest,

@@ -6,9 +6,9 @@ import { useEffect, useState } from "react";
 export default function Activate({ token }: { token: string }) {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  useEffect(() => {
-    activateAccount();
-  }, [token]);
+  // useEffect(() => {
+  //   activateAccount();
+  // }, [token]);
   const activateAccount = async () => {
     try {
       const { data } = await axios.put("/api/auth/activate", { token });

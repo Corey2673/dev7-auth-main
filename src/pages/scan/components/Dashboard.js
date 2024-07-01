@@ -5,7 +5,6 @@ import StatusTable from "./StatusTable";
 import TEST from "./test";
 import SafetyQuestions from "./SafetyQuestions";
 import CSVExport from "./Import_ExportData.js";
-import VendorLog from "./AddVendor.js";
 
 const Dashboard = () => {
   const [activeComponent, setActiveComponent] = useState("test");
@@ -139,28 +138,6 @@ const Dashboard = () => {
                   <span>Data</span>
                 </button>
               </li>
-              {/* <li className="mb-4">
-                <button
-                  className="flex items-center text-white p-2 rounded-md hover:bg-gray-700 focus:outline-none"
-                  onClick={() => handleComponentChange("vendorLog")}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 mr-3"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M13 10V3L4 14h7v7l9-11h-7z"
-                    />
-                  </svg>
-                  <span>Vendor Log</span>
-                </button>
-              </li> */}
             </ul>
           </nav>
         </div>
@@ -173,7 +150,6 @@ const Dashboard = () => {
         {activeComponent === "test" && <TEST />}
         {activeComponent === "safetyQuestions" && <SafetyQuestions />}
         {activeComponent === "exportData" && <CSVExport />}
-        {activeComponent === "vendorLog" && <VendorLog />}
       </main>
     </div>
   );

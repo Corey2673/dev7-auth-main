@@ -12,7 +12,7 @@ import clientPromise from "@/lib/mongodb";
 import { JWT } from "next-auth/jwt";
 import { Adapter, AdapterUser } from "next-auth/adapters";
 import connectDb from "@/utils/connectDb";
-import UserModal from "@/models/User";
+import UserModal from "@/models2/User";
 import bcrypt from "bcryptjs";
 export default NextAuth({
   adapter: MongoDBAdapter(clientPromise),

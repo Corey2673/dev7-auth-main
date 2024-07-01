@@ -51,6 +51,8 @@ const RegisterForm: React.FunctionComponent<IRegisterFormProps> = (props) => {
    });
     }
   };
+
+  
   
   useEffect(() => {
     const fetchUsers = async () => {
@@ -63,8 +65,8 @@ const RegisterForm: React.FunctionComponent<IRegisterFormProps> = (props) => {
       }
     };
 
-    fetchUsers();
-  }, []);
+   
+  });
   
 
 

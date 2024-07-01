@@ -5,9 +5,9 @@ import axios from "axios";
 const CsvExample = ({ dataSet, fileName }) => {
   const [csvData, setCSVData] = useState();
 
-  const filterFTEUsers = () => {
+  const FilterFTEUsers = () => {
     useEffect(() => {
-      const fetchClockData = async () => {
+      const FetchClockData = async () => {
         try {
           const { data } = await axios.get("/api/auth/" + dataSet);
 
@@ -16,7 +16,7 @@ const CsvExample = ({ dataSet, fileName }) => {
           console.error("Error fetching clock data:", error);
         }
       };
-      fetchClockData();
+      FetchClockData();
     }, []);
 
     const allData = csvData || [];
@@ -27,7 +27,7 @@ const CsvExample = ({ dataSet, fileName }) => {
   return (
     <div>
       <CSVLink
-        data={filterFTEUsers()}
+        data={FilterFTEUsers()}
         filename={fileName + ".csv"}
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
       >

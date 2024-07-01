@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import ProfileComfirm from "@/components/forms/ProfileComfirm";
-import ClockData from "@/models/ClockData";
+import ClockData from "@/models2/ClockData";
 import Departure from "./departure";
 
 interface IRegisterFormProps {}

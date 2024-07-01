@@ -1,5 +1,5 @@
 import { resetPasswordEmail } from "@/emailTemplates/reset";
-import User from "@/models/User";
+import User from "@/models2/User";
 import connectDb from "@/utils/connectDb";
 import sendMail from "@/utils/sendMail";
 import { createResetToken } from "@/utils/tokens";

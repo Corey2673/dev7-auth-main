@@ -1,4 +1,4 @@
-import ClockData from "@/models/ClockData";
+import ClockData from "@/models2/ClockData";
 import connectDb from "@/utils/connectDb";
 import type { NextApiRequest, NextApiResponse } from "next";
 import validator from "validator";

@@ -1,4 +1,4 @@
-import User from "@/models/Personal";
+import User from "@/models2/Personal";
 import connectDb from "@/utils/connectDb";
 import type { NextApiRequest, NextApiResponse } from "next";
 import validator from "validator";
